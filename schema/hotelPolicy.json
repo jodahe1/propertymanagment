@@ -1,0 +1,6 @@
+{
+  "hotelId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to Hotel" },
+  "policyType": { "type": "string", "required": true, "description": "Type of policy (e.g., CANCELLATION, PET, SMOKING, CHECK_IN_OUT) - will be an enum later" },
+  "description": { "type": "string", "required": true, "description": "Detailed description of the policy" },
+  "effectiveDate": { "type": "date", "required": false, "description": "Date when the policy becomes effective" }
+}

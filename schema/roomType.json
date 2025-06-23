@@ -1,0 +1,11 @@
+{
+  "hotelId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to Hotel" },
+  "name": { "type": "string", "required": true, "description": "Name of the room type (e.g., Deluxe Suite)" },
+  "description": { "type": "string", "required": false, "description": "Detailed description of the room type" },
+  "maxGuests": { "type": "number", "required": true, "description": "Maximum number of guests for this room type", "minimum": 1 },
+  "bedType": { "type": "string", "required": true, "description": "Type of bed (e.g., SINGLE, DOUBLE, QUEEN, KING, MIXED) - will be an enum later" },
+  "amenities": { "type": "array", "required": false, "description": "Array of amenities available in this room type (e.g., WiFi, AC, TV) - will be string[] later" },
+  "basePrice": { "type": "number", "required": true, "description": "Base price per night for this room type" },
+  "sizeSqft": { "type": "number", "required": false, "description": "Size of the room type in square feet" },
+  "images": { "type": "array", "required": false, "description": "Array of URLs to images of this room type - will be string[] later" }
+}

@@ -1,0 +1,14 @@
+{
+  "fullName": { "type": "string", "required": true, "description": "Guest's full name" },
+  "email": { "type": "string", "required": true, "format": "email", "description": "Guest's email (unique)" },
+  "phoneNumber": { "type": "string", "required": false, "description": "Guest's phone number" },
+  "address": { "type": "string", "required": false, "description": "Guest's street address" },
+  "city": { "type": "string", "required": false, "description": "City of residence" },
+  "country": { "type": "string", "required": false, "description": "Country of residence" },
+  "zipCode": { "type": "string", "required": false, "description": "Postal or ZIP code" },
+  "dateOfBirth": { "type": "date", "required": false, "description": "Guest's date of birth" },
+  "nationality": { "type": "string", "required": false, "description": "Guest's nationality" },
+  "idDocumentType": { "type": "string", "required": true, "description": "Type of ID document (e.g., PASSPORT, NATIONAL_ID, DRIVER_LICENSE) - will be an enum later" },
+  "idDocumentNumber": { "type": "string", "required": true, "description": "ID document number" },
+  "notes": { "type": "string", "required": false, "description": "Any special notes about the guest" }
+}

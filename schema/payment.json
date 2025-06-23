@@ -1,0 +1,9 @@
+{
+  "bookingId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to Booking" },
+  "amount": { "type": "number", "required": true, "description": "Payment amount" },
+  "currency": { "type": "string", "required": true, "description": "Currency (e.g., 'USD')" },
+  "paymentMethod": { "type": "string", "required": true, "description": "Payment method (e.g., CARD, CASH, BANK_TRANSFER, VIRTUAL_CARD) - will be an enum later" },
+  "status": { "type": "string", "required": true, "description": "Payment status (e.g., SUCCESS, FAILED, PENDING) - will be an enum later" },
+  "transactionReference": { "type": "string", "required": false, "description": "Reference ID for the transaction" },
+  "paidAt": { "type": "date", "required": true, "description": "Timestamp when the payment was made" }
+}

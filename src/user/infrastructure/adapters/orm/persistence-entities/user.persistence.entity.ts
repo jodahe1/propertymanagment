@@ -1,5 +1,5 @@
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
-import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
+import { PersistenceEntity } from '@shared/shared-kernel/src/entities/persistence/persistence.entity';
 
 @Entity({ tableName: 'User' })
 export class UserPersistenceEntity extends PersistenceEntity{

@@ -1,0 +1,17 @@
+{
+  "userId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to User (Hotel Owner/Admin)" },
+  "name": { "type": "string", "required": true, "description": "Hotel name" },
+  "description": { "type": "string", "required": false, "description": "Detailed description of the hotel" },
+  "address": { "type": "string", "required": true, "description": "Hotel street address" },
+  "city": { "type": "string", "required": true, "description": "City where the hotel is located" },
+  "country": { "type": "string", "required": true, "description": "Country where the hotel is located" },
+  "zipCode": { "type": "string", "required": false, "description": "Postal or ZIP code" },
+  "latitude": { "type": "number", "required": false, "description": "Geographical latitude" },
+  "longitude": { "type": "number", "required": false, "description": "Geographical longitude" },
+  "contactEmail": { "type": "string", "required": true, "format": "email", "description": "Hotel's primary contact email" },
+  "contactPhone": { "type": "string", "required": true, "description": "Hotel's primary contact phone number" },
+  "starRating": { "type": "number", "required": false, "description": "Hotel's star rating (1-5)", "minimum": 1, "maximum": 5 },
+  "status": { "type": "string", "required": true, "description": "Operational status of the hotel (PENDING, ACTIVE, INACTIVE)" },
+  "timezone": { "type": "string", "required": false, "description": "Timezone of the hotel (e.g., 'America/New_York')" },
+  "images": { "type": "array", "required": false, "description": "Array of URLs to hotel images" }
+}

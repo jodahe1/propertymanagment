@@ -1,0 +1,8 @@
+{
+  "roomTypeId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to RoomType" },
+  "roomNumber": { "type": "string", "required": true, "description": "Unique room number (e.g., '101A')" },
+  "floor": { "type": "number", "required": true, "description": "Floor number where the room is located" },
+  "status": { "type": "string", "required": true, "description": "Current status of the room (e.g., AVAILABLE, OCCUPIED, MAINTENANCE, CLEANING) - will be an enum later" },
+  "lastCleanedAt": { "type": "date", "required": false, "description": "Timestamp of the last cleaning" },
+  "notes": { "type": "string", "required": false, "description": "Any special notes about the room" }
+}

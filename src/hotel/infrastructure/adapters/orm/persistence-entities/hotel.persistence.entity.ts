@@ -1,10 +1,12 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
-
+import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm';
 @Entity({ tableName: 'Hotel' })
-export class HotelPersistenceEntity extends PersistenceEntity{
+export class HotelPersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
+  @ManyToOne(() => UserPersistenceEntity)
+  user!: UserPersistenceEntity;
 
   @Property()
   userId: string;

@@ -1,0 +1,9 @@
+{
+  "hotelId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to Hotel" },
+  "userId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to User (if staff has a user account)" },
+  "position": { "type": "string", "required": true, "description": "Staff's position (e.g., 'Housekeeper', 'Front Desk Agent')" },
+  "employmentStatus": { "type": "string", "required": true, "description": "Employment status (e.g., ACTIVE, INACTIVE, ON_LEAVE) - will be an enum later" },
+  "hireDate": { "type": "date", "required": true, "description": "Date when the staff was hired" },
+  "salary": { "type": "number", "required": false, "description": "Staff's salary" },
+  "contactNumber": { "type": "string", "required": false, "description": "Staff's contact phone number" }
+}

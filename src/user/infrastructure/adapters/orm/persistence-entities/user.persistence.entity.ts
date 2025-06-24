@@ -1,8 +1,14 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
-import { PersistenceEntity } from '@shared/shared-kernel/src/entities/persistence/persistence.entity';
-
+import {
+  Entity,
+  PrimaryKey,
+  Property,
+  OneToMany,
+  Collection
+} from '@mikro-orm/core';
+import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
+import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm';
 @Entity({ tableName: 'User' })
-export class UserPersistenceEntity extends PersistenceEntity{
+export class UserPersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
 
@@ -29,4 +35,6 @@ export class UserPersistenceEntity extends PersistenceEntity{
 
   @Property({ nullable: true })
   lastLoginAt?: Date;
+   @OneToMany(() => HotelPersistenceEntity, hotel => hotel.user)
+  hotels = new Collection<HotelPersistenceEntity>(this);
 }

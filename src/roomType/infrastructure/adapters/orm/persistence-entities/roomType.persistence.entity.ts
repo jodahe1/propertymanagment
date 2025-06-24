@@ -1,6 +1,7 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
 import { BedType } from 'src/roomType/domain/valueObjects';
+import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm/persistence-entities/hotel.persistence.entity';
 
 @Entity({ tableName: 'RoomType' })
 export class RoomTypePersistenceEntity extends PersistenceEntity {
@@ -9,6 +10,9 @@ export class RoomTypePersistenceEntity extends PersistenceEntity {
 
   @Property({ type: 'uuid' })
   hotel_id!: string;
+
+  @ManyToOne(() => HotelPersistenceEntity, { fieldName: 'hotel_id' })
+  hotel!: HotelPersistenceEntity;
 
   @Property()
   name!: string;
@@ -25,7 +29,7 @@ export class RoomTypePersistenceEntity extends PersistenceEntity {
   @Property({ type: 'number' })
   max_children!: number;
 
-  @Property({ type: 'string' })
+  @Property({ type: 'strimg' })
   bed_type!: BedType;
 
   @Property({ type: 'json', nullable: true })

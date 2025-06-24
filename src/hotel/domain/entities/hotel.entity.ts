@@ -1,13 +1,15 @@
 import { Entity } from '@shared/shared-kernel';
 import { HotelStatus } from '../valueObjects';
 import { User } from 'src/user/domain/entities';
+import { RoomType } from 'src/roomType/domain/entities';
+
 export class Hotel extends Entity {
-  private _user_id: string; // Keep this for the simple ID reference if needed in DTOs or elsewhere
+  private _user_id: string;
   get user_id() {
     return this._user_id;
   }
 
-  private _user: User; // This represents the Many-to-One relationship
+  private _user: User;
   get user(): User {
     return this._user;
   }
@@ -102,9 +104,15 @@ export class Hotel extends Entity {
     return this._isActive;
   }
 
+  // Add the collection for RoomTypes
+  private _roomTypes: RoomType[]; // This represents the One-to-Many relationship
+  get roomTypes(): RoomType[] {
+    return this._roomTypes;
+  }
+
   constructor(
-    user_id: string, // Keep this for simple ID reference in constructor
-    user: User, // Pass the User object for domain consistency
+    user_id: string,
+    user: User,
     name: string,
     address: string,
     city: string,
@@ -123,6 +131,7 @@ export class Hotel extends Entity {
     check_in_instructions?: string,
     legal_information?: string,
     isActive?: boolean,
+    roomTypes: RoomType[] = [], // Initialize roomTypes array
     // Base class properties
     id?: string,
     createdAt?: Date,
@@ -151,11 +160,12 @@ export class Hotel extends Entity {
     this._check_in_instructions = check_in_instructions;
     this._legal_information = legal_information;
     this._isActive = isActive || false;
+    this._roomTypes = roomTypes; // Assign the collection
   }
 
   public update(
-    user_id: string, // Keep this for simple ID reference in update
-    user: User, // Pass the User object for domain consistency
+    user_id: string,
+    user: User,
     name: string,
     address: string,
     city: string,

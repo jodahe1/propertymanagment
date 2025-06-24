@@ -1,10 +1,15 @@
 import { Entity } from '@shared/shared-kernel';
 import { BedType } from '../valueObjects';
-
+import { Hotel } from 'src/hotel/domain/entities';
 export class RoomType extends Entity {
   private _hotel_id: string;
   get hotel_id() {
     return this._hotel_id;
+  }
+
+  private _hotel: Hotel; // This represents the Many-to-One relationship to Hotel
+  get hotel(): Hotel {
+    return this._hotel;
   }
 
   private _name: string;
@@ -69,6 +74,7 @@ export class RoomType extends Entity {
 
   constructor(
     hotel_id: string,
+    hotel: Hotel,
     name: string,
     max_guests: number,
     max_adults: number,
@@ -80,6 +86,7 @@ export class RoomType extends Entity {
     amenities?: string[],
     size_sqm?: number,
     extra_bed_capacity?: number,
+
     id?: string,
     isActive: boolean = true,
     createdAt?: Date,
@@ -89,6 +96,7 @@ export class RoomType extends Entity {
   ) {
     super(id, createdAt, updatedAt, createdBy, updatedBy);
     this._hotel_id = hotel_id;
+    this._hotel = hotel;
     this._name = name;
     this._max_guests = max_guests;
     this._max_adults = max_adults;
@@ -105,6 +113,7 @@ export class RoomType extends Entity {
 
   public update(
     hotel_id: string,
+    hotel: Hotel,
     name: string,
     max_guests: number,
     max_adults: number,
@@ -119,6 +128,7 @@ export class RoomType extends Entity {
     isActive?: boolean,
   ) {
     this._hotel_id = hotel_id;
+    this._hotel = hotel;
     this._name = name;
     this._max_guests = max_guests;
     this._max_adults = max_adults;

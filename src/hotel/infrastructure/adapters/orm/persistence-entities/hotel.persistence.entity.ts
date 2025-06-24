@@ -1,16 +1,26 @@
-import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core'; // Import ManyToOne
+import {
+  Entity,
+  PrimaryKey,
+  Property,
+  ManyToOne,
+  OneToMany,
+  Collection,
+} from '@mikro-orm/core';
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
 import { HotelStatus } from 'src/hotel/domain/valueObjects';
 import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm';
+import { RoomTypePersistenceEntity } from 'src/roomType/infrastructure/adapters/orm';
+
 @Entity({ tableName: 'Hotel' })
 export class HotelPersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
 
+  @Property({ type: 'uuid' })
+  user_id!: string;
 
-
-  @ManyToOne(() => UserPersistenceEntity, { fieldName: 'user_id' }) // Many-to-One relationship
-  user!: UserPersistenceEntity; // This links to the UserPersistenceEntity
+  @ManyToOne(() => UserPersistenceEntity, { fieldName: 'user_id' })
+  user!: UserPersistenceEntity;
 
   @Property()
   name!: string;
@@ -62,4 +72,7 @@ export class HotelPersistenceEntity extends PersistenceEntity {
 
   @Property({ nullable: true })
   legal_information?: string;
+
+  @OneToMany(() => RoomTypePersistenceEntity, (roomType) => roomType.hotel)
+  roomTypes = new Collection<RoomTypePersistenceEntity>(this);
 }

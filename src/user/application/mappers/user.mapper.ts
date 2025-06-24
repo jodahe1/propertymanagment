@@ -34,7 +34,7 @@ export class UserMapper {
       dto.email,
       dto.phone_number,
       dto.password,
-      dto.role as UserRole, // <-- Cast to UserRole
+      dto.role as UserRole, 
       dto.is_verified,
       dto.profile_picture,
       dto.last_login_at,

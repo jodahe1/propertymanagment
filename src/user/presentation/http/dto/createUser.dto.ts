@@ -52,7 +52,7 @@ export class CreateUserDto {
   @ApiProperty({
     description: "User's role (OWNER, ADMIN, STAFF)",
     example: 'STAFF',
-    enum: UserRole, // Add enum directly to Swagger property for documentation
+    enum: UserRole, 
     required: true,
   })
   @IsEnum(UserRole)
@@ -84,7 +84,7 @@ export class CreateUserDto {
   })
   @IsDate()
   @IsOptional()
-  @Type(() => Date) // Ensures string dates are transformed to Date objects
+  @Type(() => Date) 
   last_login_at?: Date;
 
   @ApiProperty({
@@ -92,7 +92,7 @@ export class CreateUserDto {
     example: '{"canEditHotels": true, "canViewBookings": false}',
     required: false,
   })
-  @IsString() // We expect a JSON string here at the DTO level
+  @IsString() 
   @IsOptional()
   permissions?: string;
 

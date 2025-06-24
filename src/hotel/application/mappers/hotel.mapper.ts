@@ -57,6 +57,7 @@ export class HotelMapper {
     static createCommandToDomain(command: CreateHotelCommand): Hotel {
         return new Hotel(
             command.user_id,
+            null,
             command.name,
             command.address,
             command.city,
@@ -74,14 +75,15 @@ export class HotelMapper {
             command.amenities,
             command.check_in_instructions,
             command.legal_information,
-            null,
             command.isActive,
+            null,
         );
     }
     
     static updateCommandToDomain(command: UpdateHotelCommand, hotel: Hotel): Hotel {
         hotel.update(
             command.user_id,
+            null,
             command.name,
             command.address,
             command.city,

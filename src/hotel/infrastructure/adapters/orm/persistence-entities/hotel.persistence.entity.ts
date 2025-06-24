@@ -7,9 +7,7 @@ export class HotelPersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
 
-  // The foreign key property - MikroORM will manage this, but it's good to keep it explicit for clarity
-  @Property({ type: 'uuid' })
-  user_id!: string;
+
 
   @ManyToOne(() => UserPersistenceEntity, { fieldName: 'user_id' }) // Many-to-One relationship
   user!: UserPersistenceEntity; // This links to the UserPersistenceEntity

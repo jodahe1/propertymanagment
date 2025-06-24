@@ -1,6 +1,7 @@
 import { User } from 'src/user/domain/entities';
 import { UserPersistenceEntity } from '../persistence-entities/user.persistence.entity';
 import { EntityManager } from '@mikro-orm/core';
+import { UserRole } from 'src/user/domain/valueObjects';
 
 export class UserPersistenceMapper {
     static toDomain(entity: UserPersistenceEntity): User {
@@ -8,13 +9,14 @@ export class UserPersistenceMapper {
             entity.full_name,
             entity.email,
             entity.password,
-            entity.role as any, 
+            entity.role as UserRole,
             entity.phone_number,
             entity.is_verified,
             entity.profile_picture,
             entity.last_login_at,
             entity.permissions,
             entity.isActive,
+            [],
             entity.id,
         );
     }

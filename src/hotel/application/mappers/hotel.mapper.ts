@@ -2,23 +2,24 @@ import { Hotel } from 'src/hotel/domain/entities/hotel.entity';
 import { CreateHotelDto, UpdateHotelDto, HotelResponseDto } from 'src/hotel/presentation/http/dto';
 import { CreateHotelCommand, UpdateHotelCommand } from '../ports/incoming';
 import { PaginatedResponseDto, PaginatedResult, PaginationMapper } from '@shared/shared-kernel';
+import { HotelStatus } from 'src/hotel/domain/valueObjects';
 
 export class HotelMapper {
     static createDtoToCommand(dto: CreateHotelDto): CreateHotelCommand {
         return new CreateHotelCommand(
             dto.user_id,
             dto.name,
-            dto.description,
             dto.address,
             dto.city,
             dto.country,
+            dto.status,
+            dto.description,
             dto.zip_code,
             dto.latitude,
             dto.longitude,
             dto.contact_email,
             dto.contact_phone,
             dto.star_rating,
-            dto.status,
             dto.timezone,
             dto.images,
             dto.amenities,
@@ -33,17 +34,17 @@ export class HotelMapper {
             dto.id,
             dto.user_id,
             dto.name,
-            dto.description,
             dto.address,
             dto.city,
             dto.country,
+            dto.status,
+            dto.description,
             dto.zip_code,
             dto.latitude,
             dto.longitude,
             dto.contact_email,
             dto.contact_phone,
             dto.star_rating,
-            dto.status,
             dto.timezone,
             dto.images,
             dto.amenities,
@@ -57,17 +58,17 @@ export class HotelMapper {
         return new Hotel(
             command.user_id,
             command.name,
-            command.description,
             command.address,
             command.city,
             command.country,
+            command.status as HotelStatus,
+            command.description,
             command.zip_code,
             command.latitude,
             command.longitude,
             command.contact_email,
             command.contact_phone,
             command.star_rating,
-            command.status,
             command.timezone,
             command.images,
             command.amenities,
@@ -76,21 +77,23 @@ export class HotelMapper {
             null,
             command.isActive,
         );
-    }    static updateCommandToDomain(command: UpdateHotelCommand, hotel: Hotel): Hotel {
+    }
+    
+    static updateCommandToDomain(command: UpdateHotelCommand, hotel: Hotel): Hotel {
         hotel.update(
             command.user_id,
             command.name,
-            command.description,
             command.address,
             command.city,
             command.country,
+            command.status as HotelStatus,
+            command.description,
             command.zip_code,
             command.latitude,
             command.longitude,
             command.contact_email,
             command.contact_phone,
             command.star_rating,
-            command.status,
             command.timezone,
             command.images,
             command.amenities,

@@ -1,29 +1,31 @@
 import { Hotel } from 'src/hotel/domain/entities';
 import { HotelPersistenceEntity } from '../persistence-entities/hotel.persistence.entity';
 import { EntityManager } from '@mikro-orm/core';
+import { HotelStatus } from 'src/hotel/domain/valueObjects';
 
 export class HotelPersistenceMapper {
     static toDomain(entity: HotelPersistenceEntity): Hotel {
         return new Hotel(
             entity.user_id,
             entity.name,
-            entity.description,
             entity.address,
             entity.city,
             entity.country,
+            entity.status as HotelStatus,
+            entity.description,
             entity.zip_code,
             entity.latitude,
             entity.longitude,
             entity.contact_email,
             entity.contact_phone,
             entity.star_rating,
-            entity.status,
             entity.timezone,
             entity.images,
             entity.amenities,
             entity.check_in_instructions,
             entity.legal_information,
             entity.id,
+            entity.isActive,
         );
     }
 

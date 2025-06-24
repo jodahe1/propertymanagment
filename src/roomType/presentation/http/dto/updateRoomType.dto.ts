@@ -10,4 +10,11 @@ export class UpdateRoomTypeDto extends CreateRoomTypeDto {
   })
   @IsUUID()
   id!: string;
+
+  @ApiProperty({
+    description: 'Whether the room type is active',
+    example: true,
+    required: false,
+  })
+  isActive?: boolean;
 }

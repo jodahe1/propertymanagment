@@ -7,15 +7,15 @@ export class RoomTypePersistenceMapper {
         return new RoomType(
             entity.hotel_id,
             entity.name,
-            entity.description,
             entity.max_guests,
             entity.max_adults,
             entity.max_children,
             entity.bed_type,
-            entity.amenities,
             entity.base_price,
-            entity.size_sqm,
             entity.quantity,
+            entity.description,
+            entity.amenities,
+            entity.size_sqm,
             entity.extra_bed_capacity,
             entity.id,
         );

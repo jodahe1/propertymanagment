@@ -2,10 +2,19 @@ import { Options } from '@mikro-orm/core';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm';
 import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm';
+import { RoomTypePersistenceEntity } from 'src/roomType/infrastructure/adapters/orm';
 const config: Options = {
   // Required
-  entities: [UserPersistenceEntity,HotelPersistenceEntity],
-  entitiesTs: [UserPersistenceEntity,HotelPersistenceEntity],
+  entities: [
+    UserPersistenceEntity,
+    HotelPersistenceEntity,
+    RoomTypePersistenceEntity,
+  ],
+  entitiesTs: [
+    UserPersistenceEntity,
+    HotelPersistenceEntity,
+    RoomTypePersistenceEntity,
+  ],
   dbName: 'StayCentral12',
   driver: PostgreSqlDriver,
   host: 'localhost',

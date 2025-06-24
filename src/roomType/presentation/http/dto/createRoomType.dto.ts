@@ -138,4 +138,12 @@ export class CreateRoomTypeDto {
   @Min(0)
   @Type(() => Number)
   extra_bed_capacity?: number;
+
+  @ApiProperty({
+    description: 'Whether the room type is active',
+    example: true,
+    required: false,
+  })
+  @IsOptional()
+  isActive?: boolean;
 }

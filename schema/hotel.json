@@ -1,0 +1,20 @@
+{
+  "user_id": { "type": "uuid", "required": true, "description": "ID of the user who owns/manages the hotel" },
+  "name": { "type": "string", "required": true, "description": "Name of the hotel" },
+  "description": { "type": "string", "required": false, "description": "Description of the hotel" },
+  "address": { "type": "string", "required": true, "description": "Street address of the hotel" },
+  "city": { "type": "string", "required": true, "description": "City where the hotel is located" },
+  "country": { "type": "string", "required": true, "description": "Country where the hotel is located" },
+  "zip_code": { "type": "string", "required": false, "description": "Zip code of the hotel location" },
+  "latitude": { "type": "number", "required": false, "description": "Geographical latitude" },
+  "longitude": { "type": "number", "required": false, "description": "Geographical longitude" },
+  "contact_email": { "type": "string", "required": false, "format": "email", "description": "Contact email for the hotel" },
+  "contact_phone": { "type": "string", "required": false, "description": "Contact phone number for the hotel" },
+  "star_rating": { "type": "number", "required": false, "description": "Star rating of the hotel (e.g., 1-5)" },
+  "status": { "type": "string", "required": true, "description": "Status of the hotel (PENDING, ACTIVE, INACTIVE)" },
+  "timezone": { "type": "string", "required": false, "description": "Timezone of the hotel" },
+  "images": { "type": "array", "required": false, "description": "Array of image URLs for the hotel" },
+  "amenities": { "type": "array", "required": false, "description": "Array of amenities offered by the hotel" },
+  "check_in_instructions": { "type": "string", "required": false, "description": "Special check-in instructions" },
+  "legal_information": { "type": "string", "required": false, "description": "Legal information about the hotel" }
+}

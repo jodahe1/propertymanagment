@@ -1,0 +1,14 @@
+{
+  "hotel_id": { "type": "uuid", "required": true, "description": "ID of the hotel this room type belongs to" },
+  "name": { "type": "string", "required": true, "description": "Name of the room type" },
+  "description": { "type": "string", "required": false, "description": "Description of the room type" },
+  "max_guests": { "type": "number", "required": true, "description": "Maximum number of guests allowed" },
+  "max_adults": { "type": "number", "required": true, "description": "Maximum number of adults allowed" },
+  "max_children": { "type": "number", "required": true, "description": "Maximum number of children allowed" },
+  "bed_type": { "type": "string", "required": true, "description": "Type of bed(s) in the room (SINGLE, DOUBLE, QUEEN, KING, MIXED)" },
+  "amenities": { "type": "array", "required": false, "description": "Array of amenities available in this room type" },
+  "base_price": { "type": "number", "required": true, "description": "Base price per night for this room type" },
+  "size_sqm": { "type": "number", "required": false, "description": "Size of the room in square meters" },
+  "quantity": { "type": "number", "required": true, "description": "Number of rooms of this type available" },
+  "extra_bed_capacity": { "type": "number", "required": false, "description": "Capacity for extra beds in the room" }
+}

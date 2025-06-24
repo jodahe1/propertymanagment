@@ -35,3 +35,4 @@ export class UserRepository extends MikroOrmBaseRepository<User> implements TUse
         if (updates.permissions !== undefined) entity.permissions = updates.permissions;
     }
 }
+// use repo

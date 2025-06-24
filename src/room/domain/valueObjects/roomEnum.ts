@@ -1,0 +1,6 @@
+export enum AvailabilityStatus {
+  AVAILABLE = 'AVAILABLE',
+  BOOKED = 'BOOKED',
+  MAINTENANCE = 'MAINTENANCE',
+  CLEANING = 'CLEANING',
+}

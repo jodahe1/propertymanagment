@@ -1,0 +1,9 @@
+{
+  "hotel_id": { "type": "uuid", "required": true, "description": "ID of the hotel this room belongs to" },
+  "room_type_id": { "type": "uuid", "required": true, "description": "ID of the room type this room belongs to" },
+  "room_number": { "type": "string", "required": true, "description": "Unique identifier for the room within the hotel" },
+  "floor_number": { "type": "number", "required": false, "description": "Floor number where the room is located" },
+  "availability_status": { "type": "string", "required": true, "description": "Current availability status of the room (AVAILABLE, BOOKED, MAINTENANCE, CLEANING)" },
+  "current_price": { "type": "number", "required": true, "description": "Current price of the room, potentially overridden from base price" },
+  "notes": { "type": "string", "required": false, "description": "Any special notes about the room" }
+}

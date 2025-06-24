@@ -8,9 +8,6 @@ export class RoomTypePersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
 
-  @Property({ type: 'uuid' })
-  hotel_id!: string;
-
   @ManyToOne(() => HotelPersistenceEntity, { fieldName: 'hotel_id' })
   hotel!: HotelPersistenceEntity;
 
@@ -29,7 +26,7 @@ export class RoomTypePersistenceEntity extends PersistenceEntity {
   @Property({ type: 'number' })
   max_children!: number;
 
-  @Property({ type: 'strimg' })
+  @Property({ type: 'string' })
   bed_type!: BedType;
 
   @Property({ type: 'json', nullable: true })

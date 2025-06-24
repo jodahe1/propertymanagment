@@ -15,7 +15,7 @@ const config: Options = {
     HotelPersistenceEntity,
     RoomTypePersistenceEntity,
   ],
-  dbName: 'StayCentral12',
+  dbName: 'Propertymgt',
   driver: PostgreSqlDriver,
   host: 'localhost',
   port: 5432,

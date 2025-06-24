@@ -1,11 +1,13 @@
 import { RoomType } from 'src/roomType/domain/entities';
 import { RoomTypePersistenceEntity } from '../persistence-entities/roomType.persistence.entity';
 import { EntityManager } from '@mikro-orm/core';
+import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm/persistence-entities/hotel.persistence.entity';
 
 export class RoomTypePersistenceMapper {
     static toDomain(entity: RoomTypePersistenceEntity): RoomType {
         return new RoomType(
-            entity.hotel_id,
+            entity.hotel?.id ?? '',
+            null,
             entity.name,
             entity.max_guests,
             entity.max_adults,
@@ -24,7 +26,7 @@ export class RoomTypePersistenceMapper {
     static toEntity(domain: RoomType, em: EntityManager): RoomTypePersistenceEntity {
         const entity = new RoomTypePersistenceEntity();
         entity.id = domain.id;
-        entity.hotel_id = domain.hotel_id;
+        entity.hotel = em.getReference(HotelPersistenceEntity, domain.hotel_id);
         entity.name = domain.name;
         entity.description = domain.description;
         entity.max_guests = domain.max_guests;

@@ -56,6 +56,7 @@ export class RoomTypeMapper {
   static createCommandToDomain(command: CreateRoomTypeCommand): RoomType {
     return new RoomType(
       command.hotel_id,
+      null,
       command.name,
       command.max_guests,
       command.max_adults,
@@ -77,6 +78,7 @@ export class RoomTypeMapper {
   ): RoomType {
     roomType.update(
       command.hotel_id,
+      null,
       command.name,
       command.max_guests,
       command.max_adults,

@@ -1,5 +1,12 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import {
+  Entity,
+  PrimaryKey,
+  Property,
+  OneToMany,
+  Collection,
+} from '@mikro-orm/core'; // Import Collection
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
+import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm';
 import { UserRole } from 'src/user/domain/valueObjects';
 
 @Entity({ tableName: 'User' })
@@ -33,4 +40,7 @@ export class UserPersistenceEntity extends PersistenceEntity {
 
   @Property({ type: 'json', nullable: true })
   permissions?: string;
+
+  @OneToMany(() => HotelPersistenceEntity, (hotel) => hotel.user) // One-to-Many relationship
+  hotels = new Collection<HotelPersistenceEntity>(this); // Initialize as a Collection
 }

@@ -1,14 +1,18 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core'; // Import ManyToOne
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
 import { HotelStatus } from 'src/hotel/domain/valueObjects';
-
+import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm';
 @Entity({ tableName: 'Hotel' })
 export class HotelPersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
 
+  // The foreign key property - MikroORM will manage this, but it's good to keep it explicit for clarity
   @Property({ type: 'uuid' })
   user_id!: string;
+
+  @ManyToOne(() => UserPersistenceEntity, { fieldName: 'user_id' }) // Many-to-One relationship
+  user!: UserPersistenceEntity; // This links to the UserPersistenceEntity
 
   @Property()
   name!: string;

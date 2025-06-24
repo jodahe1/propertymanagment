@@ -1,15 +1,25 @@
 import { Entity } from '@shared/shared-kernel';
 import { HotelStatus } from '../valueObjects';
-
+import { User } from 'src/user/domain/entities';
 export class Hotel extends Entity {
-  private _user_id: string;
+  private _user_id: string; // Keep this for the simple ID reference if needed in DTOs or elsewhere
   get user_id() {
     return this._user_id;
+  }
+
+  private _user: User; // This represents the Many-to-One relationship
+  get user(): User {
+    return this._user;
   }
 
   private _name: string;
   get name() {
     return this._name;
+  }
+
+  private _description?: string;
+  get description() {
+    return this._description;
   }
 
   private _address: string;
@@ -25,16 +35,6 @@ export class Hotel extends Entity {
   private _country: string;
   get country() {
     return this._country;
-  }
-
-  private _status: HotelStatus;
-  get status(): HotelStatus {
-    return this._status;
-  }
-
-  private _description?: string;
-  get description() {
-    return this._description;
   }
 
   private _zip_code?: string;
@@ -65,6 +65,11 @@ export class Hotel extends Entity {
   private _star_rating?: number;
   get star_rating() {
     return this._star_rating;
+  }
+
+  private _status: HotelStatus;
+  get status() {
+    return this._status;
   }
 
   private _timezone?: string;
@@ -98,13 +103,13 @@ export class Hotel extends Entity {
   }
 
   constructor(
-    user_id: string,
+    user_id: string, // Keep this for simple ID reference in constructor
+    user: User, // Pass the User object for domain consistency
     name: string,
     address: string,
     city: string,
     country: string,
     status: HotelStatus,
-
     description?: string,
     zip_code?: string,
     latitude?: number,
@@ -117,45 +122,45 @@ export class Hotel extends Entity {
     amenities?: string[],
     check_in_instructions?: string,
     legal_information?: string,
+    isActive?: boolean,
+    // Base class properties
     id?: string,
-    isActive: boolean = true,
     createdAt?: Date,
     updatedAt?: Date,
     createdBy?: string,
     updatedBy?: string,
   ) {
     super(id, createdAt, updatedAt, createdBy, updatedBy);
-
     this._user_id = user_id;
+    this._user = user;
     this._name = name;
+    this._description = description;
     this._address = address;
     this._city = city;
     this._country = country;
-    this._status = status;
-
-    this._description = description;
     this._zip_code = zip_code;
     this._latitude = latitude;
     this._longitude = longitude;
     this._contact_email = contact_email;
     this._contact_phone = contact_phone;
     this._star_rating = star_rating;
+    this._status = status;
     this._timezone = timezone;
     this._images = images;
     this._amenities = amenities;
     this._check_in_instructions = check_in_instructions;
     this._legal_information = legal_information;
-    this._isActive = isActive;
+    this._isActive = isActive || false;
   }
 
   public update(
-    user_id: string,
+    user_id: string, // Keep this for simple ID reference in update
+    user: User, // Pass the User object for domain consistency
     name: string,
     address: string,
     city: string,
     country: string,
     status: HotelStatus,
-
     description?: string,
     zip_code?: string,
     latitude?: number,
@@ -171,27 +176,24 @@ export class Hotel extends Entity {
     isActive?: boolean,
   ) {
     this._user_id = user_id;
+    this._user = user;
     this._name = name;
+    this._description = description;
     this._address = address;
     this._city = city;
     this._country = country;
-    this._status = status;
-
-    this._description = description;
     this._zip_code = zip_code;
     this._latitude = latitude;
     this._longitude = longitude;
     this._contact_email = contact_email;
     this._contact_phone = contact_phone;
     this._star_rating = star_rating;
+    this._status = status;
     this._timezone = timezone;
     this._images = images;
     this._amenities = amenities;
     this._check_in_instructions = check_in_instructions;
     this._legal_information = legal_information;
-
-    if (isActive !== undefined) {
-      this._isActive = isActive;
-    }
+    this._isActive = isActive;
   }
 }

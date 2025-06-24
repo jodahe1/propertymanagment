@@ -6,7 +6,7 @@ import {
   //SafePopulatedEntity,
   PaginationOptions,
 } from './base.repository';
-import { Entity } from '../Entity';
+import { Entity } from '../entities/domain/entity';
 
 export abstract class MikroOrmBaseRepository<
   T extends Entity,
@@ -22,7 +22,7 @@ export abstract class MikroOrmBaseRepository<
 
   protected abstract toDomain(entity: TEntity): T;
   protected abstract toEntity(domain: TCreateData): TEntity;
-  protected abstract updateEntity(entity: TEntity, updates: Partial<T>): void;
+  protected abstract updateEntity(entity: TEntity, updates: T): void;
 
   async findById(id: string, options?: QueryOptions): Promise<T | null> {
     try {
@@ -116,7 +116,7 @@ export abstract class MikroOrmBaseRepository<
     return this.toDomain(persistedEntity);
   }
 
-  async update(id: string, updates: Partial<T>): Promise<T> {
+  async update(id: string, updates: T): Promise<T> {
     const entity = await this.repository.findOneOrFail({ id } as any);
     this.updateEntity(entity, updates);
     await this.em.flush();
@@ -128,7 +128,10 @@ export abstract class MikroOrmBaseRepository<
       const entity = await this.repository.findOneOrFail({ id } as any);
 
       // Check if entity has an 'isActive' field
-      if ('isActive' in entity && typeof (entity as any).isActive === 'boolean') {
+      if (
+        'isActive' in entity &&
+        typeof (entity as any).isActive === 'boolean'
+      ) {
         // Set as inactive instead of deleting
         (entity as any).isActive = false;
         await this.em.flush();

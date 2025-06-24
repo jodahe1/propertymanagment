@@ -1,28 +1,39 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-
+import {
+  IsArray,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsEnum,
+  IsUUID,
+  Min,
+} from 'class-validator';
+import { Type } from 'class-transformer';
+import { BedType } from 'src/roomType/domain/valueObjects';
 
 export class CreateRoomTypeDto {
   @ApiProperty({
     description: 'ID of the hotel this room type belongs to',
-    example: 'Example hotel_id',
+    example: '123e4567-e89b-12d3-a456-426614174000',
     required: true,
   })
+  @IsUUID()
   @IsNotEmpty()
-  hotel_id: string;
+  hotel_id!: string;
 
   @ApiProperty({
     description: 'Name of the room type',
-    example: 'Example name',
+    example: 'Deluxe King Room',
     required: true,
   })
-  @IsNotEmpty()
   @IsString()
-  name: string;
+  @IsNotEmpty()
+  name!: string;
 
   @ApiProperty({
     description: 'Description of the room type',
-    example: 'Example description',
+    example: 'Spacious room with a king-size bed and city views.',
     required: false,
   })
   @IsOptional()
@@ -31,91 +42,100 @@ export class CreateRoomTypeDto {
 
   @ApiProperty({
     description: 'Maximum number of guests allowed',
-    example: 'Example max_guests',
+    example: 3,
     required: true,
   })
-  @IsNotEmpty()
   @IsNumber()
-  max_guests: number;
+  @IsNotEmpty()
+  @Min(1)
+  @Type(() => Number)
+  max_guests!: number;
 
   @ApiProperty({
     description: 'Maximum number of adults allowed',
-    example: 'Example max_adults',
+    example: 2,
     required: true,
   })
-  @IsNotEmpty()
   @IsNumber()
-  max_adults: number;
+  @IsNotEmpty()
+  @Min(0)
+  @Type(() => Number)
+  max_adults!: number;
 
   @ApiProperty({
     description: 'Maximum number of children allowed',
-    example: 'Example max_children',
+    example: 1,
     required: true,
   })
-  @IsNotEmpty()
   @IsNumber()
-  max_children: number;
+  @IsNotEmpty()
+  @Min(0)
+  @Type(() => Number)
+  max_children!: number;
 
   @ApiProperty({
-    description: 'Type of bed(s) in the room (SINGLE, DOUBLE, QUEEN, KING, MIXED)',
-    example: 'Example bed_type',
+    description:
+      'Type of bed(s) in the room (SINGLE, DOUBLE, QUEEN, KING, MIXED)',
+    example: 'KING',
+    enum: BedType,
     required: true,
   })
+  @IsEnum(BedType)
   @IsNotEmpty()
-  @IsString()
-  bed_type: string;
+  bed_type!: BedType;
 
   @ApiProperty({
     description: 'Array of amenities available in this room type',
-    example: 'Example amenities',
+    example: ['Free Wi-Fi', 'Flat-screen TV', 'Mini-fridge'],
+    type: [String],
     required: false,
   })
   @IsOptional()
   @IsArray()
+  @IsString({ each: true })
   amenities?: string[];
 
   @ApiProperty({
     description: 'Base price per night for this room type',
-    example: 'Example base_price',
+    example: 150.0,
     required: true,
   })
-  @IsNotEmpty()
   @IsNumber()
-  base_price: number;
+  @IsNotEmpty()
+  @Min(0)
+  @Type(() => Number)
+  base_price!: number;
 
   @ApiProperty({
     description: 'Size of the room in square meters',
-    example: 'Example size_sqm',
+    example: 30.5,
     required: false,
   })
   @IsOptional()
   @IsNumber()
+  @Min(0)
+  @Type(() => Number)
   size_sqm?: number;
 
   @ApiProperty({
     description: 'Number of rooms of this type available',
-    example: 'Example quantity',
+    example: 10,
     required: true,
   })
-  @IsNotEmpty()
   @IsNumber()
-  quantity: number;
+  @IsNotEmpty()
+  @Min(0)
+  @Type(() => Number)
+  quantity!: number;
 
   @ApiProperty({
     description: 'Capacity for extra beds in the room',
-    example: 'Example extra_bed_capacity',
+    example: 1,
     required: false,
   })
   @IsOptional()
   @IsNumber()
+  @Min(0)
+  @Type(() => Number)
   extra_bed_capacity?: number;
-
-  @ApiProperty({
-    description: 'Whether the roomType is active',
-    example: true,
-    required: false,
-  })
-  @IsOptional()
-  @IsBoolean()
-  isActive?: boolean;
 }

@@ -1,118 +1,118 @@
-import { Entity } from "@shared/shared-kernel";
+import { Entity } from '@shared/shared-kernel';
+import { UserRole } from '../valueObjects';
 
 export class User extends Entity {
+  private _full_name: string;
 
-    private _fullName: string;
+  get full_name() {
+    return this._full_name;
+  }
 
-    get fullName() { return this._fullName }
+  private _email: string;
 
+  get email() {
+    return this._email;
+  }
 
+  private _password: string;
 
-    private _email: string;
+  get password() {
+    return this._password;
+  }
 
-    get email() { return this._email }
+  private _role: UserRole;
 
+  get role() {
+    return this._role;
+  }
 
+  private _phone_number?: string;
 
-    private _phoneNumber?: string;
+  get phone_number() {
+    return this._phone_number;
+  }
 
-    get phoneNumber() { return this._phoneNumber }
+  private _is_verified?: boolean;
 
+  get is_verified() {
+    return this._is_verified;
+  }
 
+  private _profile_picture?: string;
 
-    private _password: string;
+  get profile_picture() {
+    return this._profile_picture;
+  }
 
-    get password() { return this._password }
+  private _last_login_at?: Date;
 
+  get last_login_at() {
+    return this._last_login_at;
+  }
 
+  private _permissions?: string;
 
-    private _role: string;
+  get permissions() {
+    return this._permissions;
+  }
 
-    get role() { return this._role }
+  private _isActive: boolean;
 
+  get isActive() {
+    return this._isActive;
+  }
 
+  constructor(
+    full_name: string,
+    email: string,
+    password: string,
+    role: UserRole,
+    phone_number?: string,
+    is_verified?: boolean,
+    profile_picture?: string,
+    last_login_at?: Date,
+    permissions?: string,
+    isActive?: boolean,
+    id?: string,
+    createdAt?: Date,
+    updatedAt?: Date,
+    createdBy?: string,
+    updatedBy?: string,
+  ) {
+    super(id, createdAt, updatedAt, createdBy, updatedBy);
+    this._full_name = full_name;
+    this._email = email;
+    this._password = password;
+    this._role = role;
+    this._phone_number = phone_number;
+    this._is_verified = is_verified;
+    this._profile_picture = profile_picture;
+    this._last_login_at = last_login_at;
+    this._permissions = permissions;
+    this._isActive = isActive || false; // Assign a default if not provided
+  }
 
-    private _isVerified?: boolean;
-
-    get isVerified() { return this._isVerified }
-
-
-
-    private _profilePicture?: string;
-
-    get profilePicture() { return this._profilePicture }
-
-
-
-    private _lastLoginAt?: Date;
-
-    get lastLoginAt() { return this._lastLoginAt }
-
-
-
-    private _isActive: boolean;
-
-    get isActive() { return this._isActive }
-
-
-
-    constructor(
-        fullName: string,
-        email: string,
-        phoneNumber?: string,
-        password: string,
-        role: string,
-        isVerified?: boolean,
-        profilePicture?: string,
-        lastLoginAt?: Date,
-        //base class properties,
-        id?: string,
-        isActive?: boolean,
-        createdAt?: Date,
-        updatedAt?: Date,
-        createdBy?: string,
-        updatedBy?: string,
-    ) {
-        super(
-            id,
-            createdAt,
-            updatedAt,
-            createdBy,
-            updatedBy,
-        );
-        this._fullName = fullName;
-        this._email = email;
-        this._phoneNumber = phoneNumber;
-        this._password = password;
-        this._role = role;
-        this._isVerified = isVerified;
-        this._profilePicture = profilePicture;
-        this._lastLoginAt = lastLoginAt;
-        this._isActive = isActive;
-    }
-
-    public update(
-        fullName: string,
-        email: string,
-        phoneNumber?: string,
-        password: string,
-        role: string,
-        isVerified?: boolean,
-        profilePicture?: string,
-        lastLoginAt?: Date,
-        isActive?: boolean,
-    ) {
-        this._fullName = fullName;
-                this._email = email;
-                this._phoneNumber = phoneNumber;
-                this._password = password;
-                this._role = role;
-                this._isVerified = isVerified;
-                this._profilePicture = profilePicture;
-                this._lastLoginAt = lastLoginAt;
-                
-                this._isActive = isActive;
-    }
-
-
+  public update(
+    full_name: string,
+    email: string,
+    password: string,
+    role: UserRole,
+    phone_number?: string,
+    is_verified?: boolean,
+    profile_picture?: string,
+    last_login_at?: Date,
+    permissions?: string,
+    isActive?: boolean,
+  ) {
+    this._full_name = full_name;
+    this._email = email;
+    this._phone_number = phone_number;
+    this._password = password;
+    this._role = role;
+    this._is_verified = is_verified;
+    this._profile_picture = profile_picture;
+    this._last_login_at = last_login_at;
+    this._permissions = permissions;
+    this._isActive = isActive;
+  }
 }

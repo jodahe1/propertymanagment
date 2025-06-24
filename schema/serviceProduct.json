@@ -1,8 +1,0 @@
-{
-  "hotelId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to Hotel" },
-  "name": { "type": "string", "required": true, "description": "Name of the service or product (e.g., 'Laundry Service', 'Airport Shuttle')" },
-  "description": { "type": "string", "required": false, "description": "Description of the service or product" },
-  "price": { "type": "number", "required": true, "description": "Price of the service or product" },
-  "currency": { "type": "string", "required": true, "description": "Currency of the price (e.g., 'USD')" },
-  "status": { "type": "string", "required": true, "description": "Availability status (e.g., AVAILABLE, UNAVAILABLE) - will be an enum later" }
-}

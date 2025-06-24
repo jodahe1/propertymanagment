@@ -1,10 +1,11 @@
 {
-  "fullName": { "type": "string", "required": true, "description": "User's full name" },
-  "email": { "type": "string", "required": true, "format": "email", "description": "User's email", "example": "test@example.com" },
-  "phoneNumber": { "type": "string", "required": false, "description": "User's phone number" },
-  "password": { "type": "string", "required": true, "description": "User's password (will be handled by Identity Server)" },
-  "role": { "type": "string", "required": true, "description": "User's role", "example": "OWNER" },
-  "isVerified": { "type": "boolean", "required": false, "description": "Is user email verified?", "example": false },
-  "profilePicture": { "type": "string", "required": false, "description": "URL to profile picture" },
-  "lastLoginAt": { "type": "date", "required": false, "description": "Last login timestamp" }
+  "full_name": { "type": "string", "required": true, "description": "User's full name" },
+  "email": { "type": "string", "required": true, "format": "email", "description": "User's email address" },
+  "phone_number": { "type": "string", "required": false, "description": "User's phone number" },
+  "password": { "type": "string", "required": true, "description": "User's password" },
+  "role": { "type": "string", "required": true, "description": "User's role (OWNER, ADMIN, STAFF)" },
+  "is_verified": { "type": "boolean", "required": false, "description": "Indicates if the user's account is verified" },
+  "profile_picture": { "type": "string", "required": false, "description": "URL to the user's profile picture" },
+  "last_login_at": { "type": "date", "required": false, "description": "Timestamp of the user's last login" },
+  "permissions": { "type": "string", "required": false, "description": "JSON string storing user permissions" }
 }

@@ -1,7 +1,0 @@
-{
-  "roomId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to Room" },
-  "staffId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to Staff" },
-  "status": { "type": "string", "required": true, "description": "Housekeeping status (e.g., PENDING, IN_PROGRESS, COMPLETED) - will be an enum later" },
-  "notes": { "type": "string", "required": false, "description": "Any special notes for housekeeping" },
-  "completedAt": { "type": "date", "required": false, "description": "Timestamp when the housekeeping task was completed" }
-}

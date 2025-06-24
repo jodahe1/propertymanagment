@@ -9,5 +9,5 @@ export class UpdateUserDto extends CreateUserDto {
     required: true,
   })
   @IsUUID()
-  id: string;
+  id!: string;
 }

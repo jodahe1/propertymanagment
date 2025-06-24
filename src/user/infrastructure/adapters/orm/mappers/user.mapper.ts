@@ -5,14 +5,16 @@ import { EntityManager } from '@mikro-orm/core';
 export class UserPersistenceMapper {
     static toDomain(entity: UserPersistenceEntity): User {
         return new User(
-            entity.fullName,
+            entity.full_name,
             entity.email,
-            entity.phoneNumber,
             entity.password,
-            entity.role,
-            entity.isVerified,
-            entity.profilePicture,
-            entity.lastLoginAt,
+            entity.role as any, 
+            entity.phone_number,
+            entity.is_verified,
+            entity.profile_picture,
+            entity.last_login_at,
+            entity.permissions,
+            entity.isActive,
             entity.id,
         );
     }
@@ -20,14 +22,16 @@ export class UserPersistenceMapper {
     static toEntity(domain: User, em: EntityManager): UserPersistenceEntity {
         const entity = new UserPersistenceEntity();
         entity.id = domain.id;
-        entity.fullName = domain.fullName;
+        entity.full_name = domain.full_name;
         entity.email = domain.email;
-        entity.phoneNumber = domain.phoneNumber;
+        entity.phone_number = domain.phone_number;
         entity.password = domain.password;
         entity.role = domain.role;
-        entity.isVerified = domain.isVerified;
-        entity.profilePicture = domain.profilePicture;
-        entity.lastLoginAt = domain.lastLoginAt;
+        entity.is_verified = domain.is_verified;
+        entity.profile_picture = domain.profile_picture;
+        entity.last_login_at = domain.last_login_at;
+        entity.permissions = domain.permissions;
+        entity.isActive = domain.isActive;
         return entity;
     }
 }

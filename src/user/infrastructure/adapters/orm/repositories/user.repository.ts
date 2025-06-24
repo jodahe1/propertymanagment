@@ -24,13 +24,14 @@ export class UserRepository extends MikroOrmBaseRepository<User> implements TUse
         return UserPersistenceMapper.toEntity(domain, this.entityManager);
     }
     protected updateEntity(entity: UserPersistenceEntity, updates: User): void {
-        if (updates.fullName) entity.fullName = updates.fullName;
+        if (updates.full_name) entity.full_name = updates.full_name;
         if (updates.email) entity.email = updates.email;
-        if (updates.phoneNumber !== undefined) entity.phoneNumber = updates.phoneNumber;
+        if (updates.phone_number !== undefined) entity.phone_number = updates.phone_number;
         if (updates.password) entity.password = updates.password;
         if (updates.role) entity.role = updates.role;
-        if (updates.isVerified !== undefined) entity.isVerified = updates.isVerified;
-        if (updates.profilePicture !== undefined) entity.profilePicture = updates.profilePicture;
-        if (updates.lastLoginAt !== undefined) entity.lastLoginAt = updates.lastLoginAt;
+        if (updates.is_verified !== undefined) entity.is_verified = updates.is_verified;
+        if (updates.profile_picture !== undefined) entity.profile_picture = updates.profile_picture;
+        if (updates.last_login_at !== undefined) entity.last_login_at = updates.last_login_at;
+        if (updates.permissions !== undefined) entity.permissions = updates.permissions;
     }
 }

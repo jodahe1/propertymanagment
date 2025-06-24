@@ -1,40 +1,36 @@
-import {
-  Entity,
-  PrimaryKey,
-  Property,
-  OneToMany,
-  Collection
-} from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
-import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm';
+import { UserRole } from 'src/user/domain/valueObjects';
+
 @Entity({ tableName: 'User' })
 export class UserPersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
 
   @Property()
-  fullName: string;
+  full_name!: string;
 
   @Property()
-  email: string;
+  email!: string;
 
   @Property({ nullable: true })
-  phoneNumber?: string;
+  phone_number?: string;
 
   @Property()
-  password: string;
+  password!: string;
 
-  @Property()
-  role: string;
-
-  @Property({ nullable: true })
-  isVerified?: boolean;
+  @Property({ type: 'string' })
+  role!: UserRole;
 
   @Property({ nullable: true })
-  profilePicture?: string;
+  is_verified?: boolean;
 
   @Property({ nullable: true })
-  lastLoginAt?: Date;
-   @OneToMany(() => HotelPersistenceEntity, hotel => hotel.user)
-  hotels = new Collection<HotelPersistenceEntity>(this);
+  profile_picture?: string;
+
+  @Property({ nullable: true })
+  last_login_at?: Date;
+
+  @Property({ type: 'json', nullable: true })
+  permissions?: string;
 }

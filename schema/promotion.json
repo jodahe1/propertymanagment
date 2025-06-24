@@ -1,9 +1,0 @@
-{
-  "hotelId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to Hotel" },
-  "code": { "type": "string", "required": true, "description": "Unique promotion code (e.g., 'SUMMER20')" },
-  "discountType": { "type": "string", "required": true, "description": "Type of discount (e.g., PERCENTAGE, FIXED) - will be an enum later" },
-  "value": { "type": "number", "required": true, "description": "Discount value (e.g., 0.15 for 15% or 25 for $25 fixed)" },
-  "validFrom": { "type": "date", "required": true, "description": "Date from which the promotion is valid" },
-  "validTo": { "type": "date", "required": true, "description": "Date until which the promotion is valid" },
-  "minStay": { "type": "number", "required": false, "description": "Minimum number of nights for the promotion to apply" }
-}

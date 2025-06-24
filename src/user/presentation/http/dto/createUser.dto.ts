@@ -1,80 +1,100 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsDate, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsEnum,
+  IsString,
+  IsNotEmpty,
+  IsEmail,
+  IsOptional,
+  IsBoolean,
+  IsDate,
+  IsObject,
+} from 'class-validator';
 import { Type } from 'class-transformer';
+import { UserRole } from 'src/user/domain/valueObjects';
 
 export class CreateUserDto {
   @ApiProperty({
-    description: 'User's full name',
-    example: 'Example fullName',
+    description: "User's full name",
+    example: 'John Doe',
     required: true,
   })
-  @IsNotEmpty()
   @IsString()
-  fullName: string;
+  @IsNotEmpty()
+  full_name!: string;
 
   @ApiProperty({
-    description: 'User's email',
-    example: 'test@example.com',
+    description: "User's email address",
+    example: 'john.doe@example.com',
     required: true,
   })
-  @IsNotEmpty()
   @IsEmail()
-  email: string;
+  @IsNotEmpty()
+  email!: string;
 
   @ApiProperty({
-    description: 'User's phone number',
-    example: 'Example phoneNumber',
+    description: "User's phone number",
+    example: '+1234567890',
     required: false,
   })
+  @IsString()
   @IsOptional()
-  @IsString()
-  phoneNumber?: string;
+  phone_number?: string;
 
   @ApiProperty({
-    description: 'User's password (will be handled by Identity Server)',
-    example: 'Example password',
+    description: "User's password",
+    example: 'SecurePassword123',
     required: true,
   })
-  @IsNotEmpty()
   @IsString()
-  password: string;
+  @IsNotEmpty()
+  password!: string;
 
   @ApiProperty({
-    description: 'User's role',
-    example: 'OWNER',
+    description: "User's role (OWNER, ADMIN, STAFF)",
+    example: 'STAFF',
+    enum: UserRole, // Add enum directly to Swagger property for documentation
     required: true,
   })
+  @IsEnum(UserRole)
   @IsNotEmpty()
-  @IsString()
-  role: string;
+  role!: UserRole;
 
   @ApiProperty({
-    description: 'Is user email verified?',
-    example: 'False',
+    description: "Indicates if the user's account is verified",
+    example: true,
     required: false,
   })
-  @IsOptional()
   @IsBoolean()
-  isVerified?: boolean;
+  @IsOptional()
+  is_verified?: boolean;
 
   @ApiProperty({
-    description: 'URL to profile picture',
-    example: 'Example profilePicture',
+    description: "URL to the user's profile picture",
+    example: 'https://example.com/profile.jpg',
     required: false,
   })
-  @IsOptional()
   @IsString()
-  profilePicture?: string;
+  @IsOptional()
+  profile_picture?: string;
 
   @ApiProperty({
-    description: 'Last login timestamp',
-    example: 'Example lastLoginAt',
+    description: "Timestamp of the user's last login",
+    example: '2023-10-27T10:00:00Z',
     required: false,
   })
-  @IsOptional()
   @IsDate()
-  @Type(() => Date)
-  lastLoginAt?: Date;
+  @IsOptional()
+  @Type(() => Date) // Ensures string dates are transformed to Date objects
+  last_login_at?: Date;
+
+  @ApiProperty({
+    description: 'JSON string storing user permissions',
+    example: '{"canEditHotels": true, "canViewBookings": false}',
+    required: false,
+  })
+  @IsString() // We expect a JSON string here at the DTO level
+  @IsOptional()
+  permissions?: string;
 
   @ApiProperty({
     description: 'Whether the user is active',

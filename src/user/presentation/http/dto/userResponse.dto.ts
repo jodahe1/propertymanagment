@@ -43,58 +43,65 @@ export class UserResponseDto {
   updatedBy?: string;
 
   @ApiProperty({
-    description: 'User's full name',
-    example: 'Example fullName',
+    description: 'User\'s full name',
+    example: 'Example full_name',
     required: true,
   })
-  fullName: string;
+  full_name: string;
 
   @ApiProperty({
-    description: 'User's email',
-    example: 'test@example.com',
+    description: 'User\'s email address',
+    example: 'Example email',
     required: true,
   })
   email: string;
 
   @ApiProperty({
-    description: 'User's phone number',
-    example: 'Example phoneNumber',
+    description: 'User\'s phone number',
+    example: 'Example phone_number',
     required: false,
   })
-  phoneNumber?: string;
+  phone_number?: string;
 
   @ApiProperty({
-    description: 'User's password (will be handled by Identity Server)',
+    description: 'User\'s password',
     example: 'Example password',
     required: true,
   })
   password: string;
 
   @ApiProperty({
-    description: 'User's role',
-    example: 'OWNER',
+    description: 'User\'s role (OWNER, ADMIN, STAFF)',
+    example: 'Example role',
     required: true,
   })
   role: string;
 
   @ApiProperty({
-    description: 'Is user email verified?',
-    example: 'False',
+    description: 'Indicates if the user\'s account is verified',
+    example: 'Example is_verified',
     required: false,
   })
-  isVerified?: boolean;
+  is_verified?: boolean;
 
   @ApiProperty({
-    description: 'URL to profile picture',
-    example: 'Example profilePicture',
+    description: 'URL to the user\'s profile picture',
+    example: 'Example profile_picture',
     required: false,
   })
-  profilePicture?: string;
+  profile_picture?: string;
 
   @ApiProperty({
-    description: 'Last login timestamp',
-    example: 'Example lastLoginAt',
+    description: 'Timestamp of the user\'s last login',
+    example: 'Example last_login_at',
     required: false,
   })
-  lastLoginAt?: Date;
+  last_login_at?: Date;
+
+  @ApiProperty({
+    description: 'JSON string storing user permissions',
+    example: 'Example permissions',
+    required: false,
+  })
+  permissions?: string;
 }

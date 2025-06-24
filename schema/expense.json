@@ -1,9 +1,0 @@
-{
-  "hotelId": { "type": "string", "required": true, "format": "uuid", "description": "Foreign key to Hotel" },
-  "category": { "type": "string", "required": true, "description": "Category of the expense (e.g., SUPPLIES, UTILITIES, MAINTENANCE, SALARIES, MARKETING, OTHER) - will be an enum later" },
-  "amount": { "type": "number", "required": true, "description": "Amount of the expense" },
-  "currency": { "type": "string", "required": true, "description": "Currency of the expense (e.g., 'USD')" },
-  "description": { "type": "string", "required": false, "description": "Description of the expense" },
-  "expenseDate": { "type": "date", "required": true, "description": "Date when the expense occurred" },
-  "receiptUrl": { "type": "string", "required": false, "description": "URL to the expense receipt" }
-}

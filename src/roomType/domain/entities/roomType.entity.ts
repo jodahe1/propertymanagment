@@ -1,13 +1,14 @@
 import { Entity } from '@shared/shared-kernel';
 import { BedType } from '../valueObjects';
 import { Hotel } from 'src/hotel/domain/entities';
+import { Room } from 'src/room/domain/entities';
 export class RoomType extends Entity {
   private _hotel_id: string;
   get hotel_id() {
     return this._hotel_id;
   }
 
-  private _hotel: Hotel; // This represents the Many-to-One relationship to Hotel
+  private _hotel: Hotel;
   get hotel(): Hotel {
     return this._hotel;
   }
@@ -15,6 +16,11 @@ export class RoomType extends Entity {
   private _name: string;
   get name() {
     return this._name;
+  }
+
+  private _description?: string;
+  get description() {
+    return this._description;
   }
 
   private _max_guests: number;
@@ -37,29 +43,24 @@ export class RoomType extends Entity {
     return this._bed_type;
   }
 
-  private _base_price: number;
-  get base_price() {
-    return this._base_price;
-  }
-
-  private _quantity: number;
-  get quantity() {
-    return this._quantity;
-  }
-
-  private _description?: string;
-  get description() {
-    return this._description;
-  }
-
   private _amenities?: string[];
   get amenities() {
     return this._amenities;
   }
 
+  private _base_price: number;
+  get base_price() {
+    return this._base_price;
+  }
+
   private _size_sqm?: number;
   get size_sqm() {
     return this._size_sqm;
+  }
+
+  private _quantity: number;
+  get quantity() {
+    return this._quantity;
   }
 
   private _extra_bed_capacity?: number;
@@ -70,6 +71,12 @@ export class RoomType extends Entity {
   private _isActive: boolean;
   get isActive() {
     return this._isActive;
+  }
+
+  // Add the collection for Rooms
+  private _rooms: Room[]; // This represents the One-to-Many relationship
+  get rooms(): Room[] {
+    return this._rooms;
   }
 
   constructor(
@@ -86,7 +93,8 @@ export class RoomType extends Entity {
     amenities?: string[],
     size_sqm?: number,
     extra_bed_capacity?: number,
-
+    rooms: Room[] = [], // Initialize rooms array
+    // Base class properties
     id?: string,
     isActive: boolean = true,
     createdAt?: Date,
@@ -109,6 +117,7 @@ export class RoomType extends Entity {
     this._size_sqm = size_sqm;
     this._extra_bed_capacity = extra_bed_capacity;
     this._isActive = isActive;
+    this._rooms = rooms; // Assign the collection
   }
 
   public update(

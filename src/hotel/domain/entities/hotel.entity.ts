@@ -2,7 +2,7 @@ import { Entity } from '@shared/shared-kernel';
 import { HotelStatus } from '../valueObjects';
 import { User } from 'src/user/domain/entities';
 import { RoomType } from 'src/roomType/domain/entities';
-
+import { Room } from 'src/room/domain/entities';
 export class Hotel extends Entity {
   private _user_id: string;
   get user_id() {
@@ -104,10 +104,15 @@ export class Hotel extends Entity {
     return this._isActive;
   }
 
-  // Add the collection for RoomTypes
-  private _roomTypes: RoomType[]; // This represents the One-to-Many relationship
+  private _roomTypes: RoomType[];
   get roomTypes(): RoomType[] {
     return this._roomTypes;
+  }
+
+  // Add the collection for Rooms
+  private _rooms: Room[];
+  get rooms(): Room[] {
+    return this._rooms;
   }
 
   constructor(
@@ -131,7 +136,8 @@ export class Hotel extends Entity {
     check_in_instructions?: string,
     legal_information?: string,
     isActive?: boolean,
-    roomTypes: RoomType[] = [], // Initialize roomTypes array
+    roomTypes: RoomType[] = [],
+    rooms: Room[] = [], // Initialize rooms array
     // Base class properties
     id?: string,
     createdAt?: Date,
@@ -160,7 +166,8 @@ export class Hotel extends Entity {
     this._check_in_instructions = check_in_instructions;
     this._legal_information = legal_information;
     this._isActive = isActive || false;
-    this._roomTypes = roomTypes; // Assign the collection
+    this._roomTypes = roomTypes;
+    this._rooms = rooms; // Assign the collection
   }
 
   public update(

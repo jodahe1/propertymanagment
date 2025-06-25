@@ -1,14 +1,26 @@
 import { Entity } from '@shared/shared-kernel';
 import { AvailabilityStatus } from '../valueObjects';
+import { Hotel } from 'src/hotel/domain/entities';
+import { RoomType } from 'src/roomType/domain/entities';
 export class Room extends Entity {
   private _hotel_id: string;
   get hotel_id() {
     return this._hotel_id;
   }
 
+  private _hotel: Hotel; // This represents the Many-to-One relationship to Hotel
+  get hotel(): Hotel {
+    return this._hotel;
+  }
+
   private _room_type_id: string;
   get room_type_id() {
     return this._room_type_id;
+  }
+
+  private _roomType: RoomType; // This represents the Many-to-One relationship to RoomType
+  get roomType(): RoomType {
+    return this._roomType;
   }
 
   private _room_number: string;
@@ -43,15 +55,17 @@ export class Room extends Entity {
 
   constructor(
     hotel_id: string,
+    hotel: Hotel,
     room_type_id: string,
+    roomType: RoomType,
     room_number: string,
     availability_status: AvailabilityStatus,
     current_price: number,
     floor_number?: number,
     notes?: string,
-    //base class properties
+    // Base class properties
     id?: string,
-    isActive?: boolean,
+    isActive: boolean = true,
     createdAt?: Date,
     updatedAt?: Date,
     createdBy?: string,
@@ -59,18 +73,22 @@ export class Room extends Entity {
   ) {
     super(id, createdAt, updatedAt, createdBy, updatedBy);
     this._hotel_id = hotel_id;
+    this._hotel = hotel; // Assign the hotel object
     this._room_type_id = room_type_id;
+    this._roomType = roomType; // Assign the roomType object
     this._room_number = room_number;
+    this._floor_number = floor_number;
     this._availability_status = availability_status;
     this._current_price = current_price;
-    this._floor_number = floor_number;
     this._notes = notes;
     this._isActive = isActive;
   }
 
   public update(
     hotel_id: string,
+    hotel: Hotel,
     room_type_id: string,
+    roomType: RoomType,
     room_number: string,
     availability_status: AvailabilityStatus,
     current_price: number,
@@ -79,12 +97,14 @@ export class Room extends Entity {
     isActive?: boolean,
   ) {
     this._hotel_id = hotel_id;
+    this._hotel = hotel;
     this._room_type_id = room_type_id;
+    this._roomType = roomType;
     this._room_number = room_number;
+    this._floor_number = floor_number;
     this._availability_status = availability_status;
     this._current_price = current_price;
-    this._floor_number = floor_number;
     this._notes = notes;
-    this._isActive = isActive;
+    if (isActive !== undefined) this._isActive = isActive;
   }
 }

@@ -1,7 +1,15 @@
-import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
+import {
+  Entity,
+  PrimaryKey,
+  Property,
+  ManyToOne,
+  OneToMany,
+  Collection,
+} from '@mikro-orm/core';
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
 import { BedType } from 'src/roomType/domain/valueObjects';
-import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm/persistence-entities/hotel.persistence.entity';
+import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm';
+import { RoomPersistenceEntity } from 'src/room/infrastructure/adapters/orm';
 
 @Entity({ tableName: 'RoomType' })
 export class RoomTypePersistenceEntity extends PersistenceEntity {
@@ -43,4 +51,7 @@ export class RoomTypePersistenceEntity extends PersistenceEntity {
 
   @Property({ type: 'number', nullable: true })
   extra_bed_capacity?: number;
+
+  @OneToMany(() => RoomPersistenceEntity, (room) => room.roomType)
+  rooms = new Collection<RoomPersistenceEntity>(this);
 }

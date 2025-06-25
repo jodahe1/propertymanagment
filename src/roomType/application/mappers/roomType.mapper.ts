@@ -68,6 +68,7 @@ export class RoomTypeMapper {
       command.amenities,
       command.size_sqm,
       command.extra_bed_capacity,
+      [],
       null,
       command.isActive,
     );

@@ -2,6 +2,7 @@ import { Room } from 'src/room/domain/entities/room.entity';
 import { CreateRoomDto, UpdateRoomDto, RoomResponseDto } from 'src/room/presentation/http/dto';
 import { CreateRoomCommand, UpdateRoomCommand } from '../ports/incoming';
 import { PaginatedResponseDto, PaginatedResult, PaginationMapper } from '@shared/shared-kernel';
+import { AvailabilityStatus } from 'src/room/domain/valueObjects';
 
 export class RoomMapper {
     static createDtoToCommand(dto: CreateRoomDto): CreateRoomCommand {
@@ -9,9 +10,9 @@ export class RoomMapper {
             dto.hotel_id,
             dto.room_type_id,
             dto.room_number,
-            dto.floor_number,
             dto.availability_status,
             dto.current_price,
+            dto.floor_number,
             dto.notes,
             dto.isActive,
         );
@@ -23,9 +24,9 @@ export class RoomMapper {
             dto.hotel_id,
             dto.room_type_id,
             dto.room_number,
-            dto.floor_number,
             dto.availability_status,
             dto.current_price,
+            dto.floor_number,
             dto.notes,
             dto.isActive,
         );
@@ -34,23 +35,28 @@ export class RoomMapper {
     static createCommandToDomain(command: CreateRoomCommand): Room {
         return new Room(
             command.hotel_id,
+            null,
             command.room_type_id,
+            null,
             command.room_number,
-            command.floor_number,
-            command.availability_status,
+            command.availability_status as AvailabilityStatus,
             command.current_price,
+            command.floor_number,
             command.notes,
             null,
             command.isActive,
         );
-    }    static updateCommandToDomain(command: UpdateRoomCommand, room: Room): Room {
+    }
+    static updateCommandToDomain(command: UpdateRoomCommand, room: Room): Room {
         room.update(
             command.hotel_id,
+            null,
             command.room_type_id,
+            null,
             command.room_number,
-            command.floor_number,
-            command.availability_status,
+            command.availability_status as AvailabilityStatus,
             command.current_price,
+            command.floor_number,
             command.notes,
             command.isActive,
         );

@@ -80,4 +80,12 @@ export class CreateRoomDto {
   @IsOptional()
   @IsString()
   notes?: string;
+
+  @ApiProperty({
+    description: 'Whether the room is active',
+    example: true,
+    required: false,
+  })
+  @IsOptional()
+  isActive?: boolean;
 }

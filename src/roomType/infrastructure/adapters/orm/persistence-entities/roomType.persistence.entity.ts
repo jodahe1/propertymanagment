@@ -16,7 +16,7 @@ export class RoomTypePersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
 
-  @ManyToOne(() => HotelPersistenceEntity, { fieldName: 'hotel_id' })
+  @ManyToOne(() => HotelPersistenceEntity)
   hotel!: HotelPersistenceEntity;
 
   @Property()

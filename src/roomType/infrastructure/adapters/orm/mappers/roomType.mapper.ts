@@ -19,7 +19,9 @@ export class RoomTypePersistenceMapper {
             entity.amenities,
             entity.size_sqm,
             entity.extra_bed_capacity,
+            [],
             entity.id,
+            true,
         );
     }
 

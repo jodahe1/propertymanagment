@@ -29,8 +29,9 @@ export class HotelPersistenceMapper {
       entity.check_in_instructions,
       entity.legal_information,
       entity.isActive,
-      [], // Pass empty array for roomTypes
-      entity.id,
+      [], // roomTypes array
+      [], // rooms array
+      entity.id, // id parameter
     );
   }
 

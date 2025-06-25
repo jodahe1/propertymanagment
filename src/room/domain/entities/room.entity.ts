@@ -55,9 +55,9 @@ export class Room extends Entity {
 
   constructor(
     hotel_id: string,
-    hotel: Hotel,
+    hotel: Hotel, // Added Hotel object to constructor
     room_type_id: string,
-    roomType: RoomType,
+    roomType: RoomType, // Added RoomType object to constructor
     room_number: string,
     availability_status: AvailabilityStatus,
     current_price: number,
@@ -86,9 +86,9 @@ export class Room extends Entity {
 
   public update(
     hotel_id: string,
-    hotel: Hotel,
+    hotel: Hotel, // Added Hotel object to update method
     room_type_id: string,
-    roomType: RoomType,
+    roomType: RoomType, // Added RoomType object to update method
     room_number: string,
     availability_status: AvailabilityStatus,
     current_price: number,

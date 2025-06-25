@@ -3,17 +3,20 @@ import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm';
 import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm';
 import { RoomTypePersistenceEntity } from 'src/roomType/infrastructure/adapters/orm';
+import { RoomPersistenceEntity } from 'src/room/infrastructure/adapters/orm';
 const config: Options = {
   // Required
   entities: [
     UserPersistenceEntity,
     HotelPersistenceEntity,
     RoomTypePersistenceEntity,
+    RoomPersistenceEntity,
   ],
   entitiesTs: [
     UserPersistenceEntity,
     HotelPersistenceEntity,
     RoomTypePersistenceEntity,
+    RoomPersistenceEntity,
   ],
   dbName: 'Propertymgt',
   driver: PostgreSqlDriver,

@@ -1,7 +1,8 @@
 import { Entity } from '@shared/shared-kernel';
 import { BedType } from '../valueObjects';
-import { Hotel } from 'src/hotel/domain/entities';
-import { Room } from 'src/room/domain/entities';
+import { Hotel } from 'src/hotel/domain/entities/hotel.entity'; // Using your preferred path style
+import { Room } from 'src/room/domain/entities/room.entity'; // Using your preferred path style
+
 export class RoomType extends Entity {
   private _hotel_id: string;
   get hotel_id() {

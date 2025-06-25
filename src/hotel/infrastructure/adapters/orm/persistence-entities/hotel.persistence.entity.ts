@@ -8,10 +8,9 @@ import {
 } from '@mikro-orm/core';
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
 import { HotelStatus } from 'src/hotel/domain/valueObjects';
-import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm';
-import { RoomTypePersistenceEntity } from 'src/roomType/infrastructure/adapters/orm';
+import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm/persistence-entities/user.persistence.entity';
 import { RoomPersistenceEntity } from 'src/room/infrastructure/adapters/orm/persistence-entities/room.persistence.entity';
-
+import { RoomTypePersistenceEntity } from 'src/roomType/infrastructure/adapters/orm';
 @Entity({ tableName: 'Hotel' })
 export class HotelPersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })

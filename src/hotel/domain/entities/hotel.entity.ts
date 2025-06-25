@@ -3,6 +3,8 @@ import { HotelStatus } from '../valueObjects';
 import { User } from 'src/user/domain/entities';
 import { RoomType } from 'src/roomType/domain/entities';
 import { Room } from 'src/room/domain/entities';
+
+
 export class Hotel extends Entity {
   private _user_id: string;
   get user_id() {
@@ -109,7 +111,6 @@ export class Hotel extends Entity {
     return this._roomTypes;
   }
 
-  // Add the collection for Rooms
   private _rooms: Room[];
   get rooms(): Room[] {
     return this._rooms;
@@ -137,8 +138,7 @@ export class Hotel extends Entity {
     legal_information?: string,
     isActive?: boolean,
     roomTypes: RoomType[] = [],
-    rooms: Room[] = [], // Initialize rooms array
-    // Base class properties
+    rooms: Room[] = [],
     id?: string,
     createdAt?: Date,
     updatedAt?: Date,
@@ -167,7 +167,7 @@ export class Hotel extends Entity {
     this._legal_information = legal_information;
     this._isActive = isActive || false;
     this._roomTypes = roomTypes;
-    this._rooms = rooms; // Assign the collection
+    this._rooms = rooms;
   }
 
   public update(

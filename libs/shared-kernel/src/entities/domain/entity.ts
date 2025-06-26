@@ -1,3 +1,4 @@
+import * as crypto from 'crypto';
 export abstract class Entity {
   protected _id!: string;
   get id() { return this._id; }

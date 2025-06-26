@@ -5,7 +5,7 @@ import { MikroOrmBaseRepository } from '@shared/shared-kernel';
 import { THotelRepository } from 'src/hotel/application/ports/outgoing/hotel.repository';
 import { Hotel } from 'src/hotel/domain/entities';
 import { HotelPersistenceMapper } from '../mappers/hotel.mapper';
-import { HotelPersistenceEntity } from '../persistence-entities/hotel.persistence.entity';
+import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm/persistence-entities/hotel.persistence.entity';
 import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm/persistence-entities/user.persistence.entity';
 
 @Injectable()

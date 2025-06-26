@@ -9,8 +9,6 @@ import {
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
 import { HotelStatus } from 'src/hotel/domain/valueObjects';
 import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm/persistence-entities/user.persistence.entity';
-import { RoomPersistenceEntity } from 'src/room/infrastructure/adapters/orm/persistence-entities/room.persistence.entity';
-import { RoomTypePersistenceEntity } from 'src/roomType/infrastructure/adapters/orm';
 @Entity({ tableName: 'Hotel' })
 export class HotelPersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
@@ -70,9 +68,9 @@ export class HotelPersistenceEntity extends PersistenceEntity {
   @Property({ nullable: true })
   legal_information?: string;
 
-  @OneToMany(() => RoomTypePersistenceEntity, (roomType) => roomType.hotel)
-  roomTypes = new Collection<RoomTypePersistenceEntity>(this);
+  @OneToMany('RoomTypePersistenceEntity', 'hotel')
+  roomTypes = new Collection<any>(this);
 
-  @OneToMany(() => RoomPersistenceEntity, (room) => room.hotel)
-  rooms = new Collection<RoomPersistenceEntity>(this);
+  @OneToMany('RoomPersistenceEntity', 'hotel')
+  rooms = new Collection<any>(this);
 }

@@ -8,16 +8,14 @@ import {
 } from '@mikro-orm/core';
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
 import { BedType } from 'src/roomType/domain/valueObjects';
-import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm/persistence-entities/hotel.persistence.entity';
-import { RoomPersistenceEntity } from 'src/room/infrastructure/adapters/orm/persistence-entities/room.persistence.entity';
 
 @Entity({ tableName: 'RoomType' })
 export class RoomTypePersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
 
-  @ManyToOne(() => HotelPersistenceEntity, { fieldName: 'hotel_id' })
-  hotel!: HotelPersistenceEntity;
+  @ManyToOne('HotelPersistenceEntity', { fieldName: 'hotel_id' })
+  hotel!: any;
 
   @Property()
   name!: string;
@@ -52,6 +50,6 @@ export class RoomTypePersistenceEntity extends PersistenceEntity {
   @Property({ type: 'number', nullable: true })
   extra_bed_capacity?: number;
 
-  @OneToMany(() => RoomPersistenceEntity, (room) => room.roomType)
-  rooms = new Collection<RoomPersistenceEntity>(this);
+  @OneToMany('RoomPersistenceEntity', 'roomType')
+  rooms = new Collection<any>(this);
 }

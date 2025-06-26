@@ -1,9 +1,10 @@
 import { Options } from '@mikro-orm/core';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
-import { UserPersistenceEntity } from 'src/user/infrastructure/adapters/orm';
-import { HotelPersistenceEntity } from 'src/hotel/infrastructure/adapters/orm';
-import { RoomTypePersistenceEntity } from 'src/roomType/infrastructure/adapters/orm';
-import { RoomPersistenceEntity } from 'src/room/infrastructure/adapters/orm';
+import { UserPersistenceEntity } from './src/user/infrastructure/adapters/orm/persistence-entities/user.persistence.entity';
+import { HotelPersistenceEntity } from './src/hotel/infrastructure/adapters/orm/persistence-entities/hotel.persistence.entity';
+import { RoomTypePersistenceEntity } from './src/roomType/infrastructure/adapters/orm/persistence-entities/roomType.persistence.entity';
+import { RoomPersistenceEntity } from './src/room/infrastructure/adapters/orm/persistence-entities/room.persistence.entity';
+
 const config: Options = {
   // Required
   entities: [

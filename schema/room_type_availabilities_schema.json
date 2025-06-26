@@ -1,0 +1,46 @@
+{
+  "roomTypeId": {
+    "type": "uuid",
+    "required": true,
+    "description": "The ID of the room type this availability applies to",
+    "example": "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+  },
+  "date": {
+    "type": "string",
+    "format": "date",
+    "required": true,
+    "description": "The specific date for this availability entry (YYYY-MM-DD)",
+    "example": "2025-12-25"
+  },
+  "availableQuantity": {
+    "type": "number",
+    "required": true,
+    "description": "The number of rooms of this type available for booking on this date",
+    "example": 5
+  },
+  "priceModifier": {
+    "type": "number",
+    "required": false,
+    "description": "A multiplier or additive amount that adjusts the room type's base price for this date (e.g., 1.2 for +20%, 0.8 for -20%)",
+    "example": 1.1
+  },
+  "minStayNights": {
+    "type": "number",
+    "required": false,
+    "description": "Minimum nights required for a booking starting on this date for this room type",
+    "example": 2
+  },
+  "maxStayNights": {
+    "type": "number",
+    "required": false,
+    "description": "Maximum nights allowed for a booking starting on this date for this room type",
+    "example": 7
+  },
+  "blockedReason": {
+    "type": "string",
+    "required": false,
+    "description": "Reason if the entire room type is blocked for this date",
+    "enum": ["MAINTENANCE", "OWNER_USE", "OVERBOOKED", "OTHER"],
+    "example": "MAINTENANCE"
+  }
+}

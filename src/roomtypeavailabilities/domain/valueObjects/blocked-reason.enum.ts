@@ -1,0 +1,6 @@
+export enum BlockedReason {
+  MAINTENANCE = 'MAINTENANCE',
+  OWNER_USE = 'OWNER_USE',
+  OVERBOOKED = 'OVERBOOKED',
+  OTHER = 'OTHER',
+}

@@ -638,7 +638,7 @@
           "mappedType": "integer"
         }
       },
-      "name": "RoomType",
+      "name": "room_types",
       "schema": "public",
       "indexes": [
         {
@@ -646,13 +646,13 @@
             "is_active"
           ],
           "composite": false,
-          "keyName": "RoomType_is_active_index",
+          "keyName": "room_types_is_active_index",
           "constraint": false,
           "primary": false,
           "unique": false
         },
         {
-          "keyName": "RoomType_pkey",
+          "keyName": "room_types_pkey",
           "columnNames": [
             "id"
           ],
@@ -664,16 +664,185 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "RoomType_hotel_id_foreign": {
-          "constraintName": "RoomType_hotel_id_foreign",
+        "room_types_hotel_id_foreign": {
+          "constraintName": "room_types_hotel_id_foreign",
           "columnNames": [
             "hotel_id"
           ],
-          "localTableName": "public.RoomType",
+          "localTableName": "public.room_types",
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.Hotel",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "mappedType": "uuid"
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "true",
+          "mappedType": "boolean"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "roomTypeId": {
+          "name": "roomTypeId",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "date": {
+          "name": "date",
+          "type": "date",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 0,
+          "mappedType": "date"
+        },
+        "available_quantity": {
+          "name": "available_quantity",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "price_modifier": {
+          "name": "price_modifier",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "integer"
+        },
+        "min_stay_nights": {
+          "name": "min_stay_nights",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "integer"
+        },
+        "max_stay_nights": {
+          "name": "max_stay_nights",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "integer"
+        },
+        "blocked_reason": {
+          "name": "blocked_reason",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        }
+      },
+      "name": "room_type_availabilities",
+      "schema": "public",
+      "indexes": [
+        {
+          "columnNames": [
+            "is_active"
+          ],
+          "composite": false,
+          "keyName": "room_type_availabilities_is_active_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "room_type_availabilities_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "room_type_availabilities_roomTypeId_foreign": {
+          "constraintName": "room_type_availabilities_roomTypeId_foreign",
+          "columnNames": [
+            "roomTypeId"
+          ],
+          "localTableName": "public.room_type_availabilities",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.room_types",
           "updateRule": "cascade"
         }
       },
@@ -854,7 +1023,7 @@
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.RoomType",
+          "referencedTableName": "public.room_types",
           "updateRule": "cascade"
         }
       },

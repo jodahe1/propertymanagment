@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsUUID } from 'class-validator';
+import { IsUUID, IsOptional, IsEnum } from 'class-validator';
 import { CreateRoomtypeavailabilitiesDto } from './createRoomtypeavailabilities.dto';
+import { BlockedReason } from 'src/roomtypeavailabilities/domain/valueObjects/blocked-reason.enum';
 
 export class UpdateRoomtypeavailabilitiesDto extends CreateRoomtypeavailabilitiesDto {
   @ApiProperty({
@@ -10,4 +11,14 @@ export class UpdateRoomtypeavailabilitiesDto extends CreateRoomtypeavailabilitie
   })
   @IsUUID()
   id: string;
+
+  @ApiProperty({
+    description: 'Reason if the entire room type is blocked for this date',
+    example: 'MAINTENANCE',
+    enum: BlockedReason,
+    required: false,
+  })
+  @IsOptional()
+  @IsEnum(BlockedReason)
+  blockedReason?: BlockedReason;
 }

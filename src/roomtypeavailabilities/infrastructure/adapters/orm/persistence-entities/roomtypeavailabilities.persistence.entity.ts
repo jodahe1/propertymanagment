@@ -1,19 +1,25 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property, ManyToOne, Ref } from '@mikro-orm/core';
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
+import { BlockedReason } from 'src/roomtypeavailabilities/domain/valueObjects/blocked-reason.enum';
+import { RoomTypePersistenceEntity } from 'src/roomType/infrastructure/adapters/orm/persistence-entities/roomType.persistence.entity';
 
-@Entity({ tableName: 'Roomtypeavailabilities' })
-export class RoomtypeavailabilitiesPersistenceEntity extends PersistenceEntity{
+@Entity({ tableName: 'room_type_availabilities' })
+export class RoomtypeavailabilitiesPersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
 
-  @Property()
-  roomTypeId: string;
+  @ManyToOne(() => RoomTypePersistenceEntity, {
+    fieldName: 'roomTypeId',
+    referenceColumnName: 'id',
+    nullable: false,
+  })
+  roomType!: Ref<RoomTypePersistenceEntity>;
+
+  @Property({ type: 'date' })
+  date!: string;
 
   @Property()
-  date: string;
-
-  @Property()
-  availableQuantity: number;
+  availableQuantity!: number;
 
   @Property({ nullable: true })
   priceModifier?: number;
@@ -24,6 +30,6 @@ export class RoomtypeavailabilitiesPersistenceEntity extends PersistenceEntity{
   @Property({ nullable: true })
   maxStayNights?: number;
 
-  @Property({ nullable: true })
-  blockedReason?: string;
+  @Property({ type: 'string' })
+  blockedReason?: BlockedReason;
 }

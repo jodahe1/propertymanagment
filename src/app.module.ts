@@ -9,6 +9,7 @@ import { HotelPersistenceEntity } from './hotel/infrastructure/adapters/orm';
 import { UserModule } from './user/user.module';
 import { RoomModule } from './room/room.module';
 import { RoomTypeModule } from './roomType/roomType.module';
+import { RoomtypeavailabilitiesModule } from './roomtypeavailabilities/roomtypeavailabilities.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -17,6 +18,7 @@ import { RoomTypeModule } from './roomType/roomType.module';
     UserModule,
     RoomModule,
     RoomTypeModule,
+    RoomtypeavailabilitiesModule
   ],
   controllers: [AppController],
   providers: [AppService],

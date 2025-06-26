@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { BlockedReason } from 'src/roomtypeavailabilities/domain/valueObjects/blocked-reason.enum';
 
 export class RoomtypeavailabilitiesResponseDto {
   @ApiProperty({
@@ -9,21 +10,21 @@ export class RoomtypeavailabilitiesResponseDto {
 
   @ApiProperty({
     description: 'Whether the entity is active',
-    example: 'true',
+    example: true,
     required: true,
   })
   isActive: boolean;
 
   @ApiProperty({
     description: 'When the entity was created',
-    example: '2023-01-01T00:00:00Z',
+    example: '2023-01-01T00:00:00.000Z',
     required: false,
   })
   createdAt?: Date;
 
   @ApiProperty({
     description: 'When the entity was last updated',
-    example: '2023-01-01T00:00:00Z',
+    example: '2023-01-01T00:00:00.000Z',
     required: false,
   })
   updatedAt?: Date;
@@ -57,29 +58,33 @@ export class RoomtypeavailabilitiesResponseDto {
   date: string;
 
   @ApiProperty({
-    description: 'The number of rooms of this type available for booking on this date',
-    example: '5',
+    description:
+      'The number of rooms of this type available for booking on this date',
+    example: 5,
     required: true,
   })
   availableQuantity: number;
 
   @ApiProperty({
-    description: 'A multiplier or additive amount that adjusts the room type's base price for this date (e.g., 1.2 for +20%, 0.8 for -20%)',
-    example: '1.1',
+    description:
+      "A multiplier or additive amount that adjusts the room type's base price for this date (e.g., 1.2 for +20%, 0.8 for -20%)",
+    example: 1.1,
     required: false,
   })
   priceModifier?: number;
 
   @ApiProperty({
-    description: 'Minimum nights required for a booking starting on this date for this room type',
-    example: '2',
+    description:
+      'Minimum nights required for a booking starting on this date for this room type',
+    example: 2,
     required: false,
   })
   minStayNights?: number;
 
   @ApiProperty({
-    description: 'Maximum nights allowed for a booking starting on this date for this room type',
-    example: '7',
+    description:
+      'Maximum nights allowed for a booking starting on this date for this room type',
+    example: 7,
     required: false,
   })
   maxStayNights?: number;
@@ -87,7 +92,8 @@ export class RoomtypeavailabilitiesResponseDto {
   @ApiProperty({
     description: 'Reason if the entire room type is blocked for this date',
     example: 'MAINTENANCE',
+    enum: BlockedReason,
     required: false,
   })
-  blockedReason?: string;
+  blockedReason?: BlockedReason;
 }

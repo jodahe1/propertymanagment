@@ -8,8 +8,8 @@ import {
 } from '@mikro-orm/core';
 import { PersistenceEntity } from '@shared/shared-kernel/entities/persistence/persistence.entity';
 import { BedType } from 'src/roomType/domain/valueObjects';
-
-@Entity({ tableName: 'RoomType' })
+import { RoomtypeavailabilitiesPersistenceEntity } from 'src/roomtypeavailabilities/infrastructure/adapters/orm/persistence-entities/roomtypeavailabilities.persistence.entity';
+@Entity({ tableName: 'room_types' })
 export class RoomTypePersistenceEntity extends PersistenceEntity {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id!: string;
@@ -52,4 +52,11 @@ export class RoomTypePersistenceEntity extends PersistenceEntity {
 
   @OneToMany('RoomPersistenceEntity', 'roomType')
   rooms = new Collection<any>(this);
+
+  @OneToMany(
+    () => RoomtypeavailabilitiesPersistenceEntity,
+    (roomTypeAvailability) => roomTypeAvailability.roomType,
+  )
+  roomTypeAvailabilities =
+    new Collection<RoomtypeavailabilitiesPersistenceEntity>(this);
 }

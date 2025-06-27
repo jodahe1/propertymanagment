@@ -5,7 +5,7 @@ import { HotelPersistenceEntity } from './src/hotel/infrastructure/adapters/orm/
 import { RoomTypePersistenceEntity } from './src/roomType/infrastructure/adapters/orm/persistence-entities/roomType.persistence.entity';
 import { RoomPersistenceEntity } from './src/room/infrastructure/adapters/orm/persistence-entities/room.persistence.entity';
 import { RoomtypeavailabilitiesPersistenceEntity } from 'src/roomtypeavailabilities/infrastructure/adapters/orm/persistence-entities/roomtypeavailabilities.persistence.entity';
-
+import { GuestPersistenceEntity } from 'src/guest/infrastructure/adapters/orm/persistence-entities/guest.persistence.entity';
 const config: Options = {
   // Required
   entities: [
@@ -14,6 +14,7 @@ const config: Options = {
     RoomTypePersistenceEntity,
     RoomPersistenceEntity,
     RoomtypeavailabilitiesPersistenceEntity,
+    GuestPersistenceEntity,
   ],
   entitiesTs: [
     UserPersistenceEntity,
@@ -21,6 +22,7 @@ const config: Options = {
     RoomTypePersistenceEntity,
     RoomPersistenceEntity,
     RoomtypeavailabilitiesPersistenceEntity,
+    GuestPersistenceEntity,
   ],
   dbName: 'Propertymgt',
   driver: PostgreSqlDriver,

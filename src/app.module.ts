@@ -5,11 +5,10 @@ import { ConfigModule } from '@nestjs/config';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { HotelModule } from './hotel/hotel.module';
 import config from '../mikro-orm.config';
-import { HotelPersistenceEntity } from './hotel/infrastructure/adapters/orm';
+import { GuestModule } from './guest/guest.module';
 import { UserModule } from './user/user.module';
 import { RoomModule } from './room/room.module';
 import { RoomTypeModule } from './roomType/roomType.module';
-import { RoomtypeavailabilitiesModule } from './roomtypeavailabilities/roomtypeavailabilities.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -18,7 +17,7 @@ import { RoomtypeavailabilitiesModule } from './roomtypeavailabilities/roomtypea
     UserModule,
     RoomModule,
     RoomTypeModule,
-    RoomtypeavailabilitiesModule
+    GuestModule,
   ],
   controllers: [AppController],
   providers: [AppService],

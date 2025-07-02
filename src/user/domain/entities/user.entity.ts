@@ -102,9 +102,6 @@ export class User extends Entity {
     last_login_at?: Date,
     permissions?: string,
     isActive?: boolean,
-    // Note: Updating collections in an `update` method directly is often more complex
-    // and might involve separate methods for adding/removing items.
-    // For simplicity, we are not adding hotels to `update` for now.
   ) {
     this._full_name = full_name;
     this._email = email;
@@ -116,5 +113,9 @@ export class User extends Entity {
     this._last_login_at = last_login_at;
     this._permissions = permissions;
     this._isActive = isActive;
+  }
+
+  public isSuperAdmin(): boolean {
+    return this._role === UserRole.SUPER_ADMIN;
   }
 }

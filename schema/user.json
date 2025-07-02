@@ -3,7 +3,7 @@
   "email": { "type": "string", "required": true, "format": "email", "description": "User's email address" },
   "phone_number": { "type": "string", "required": false, "description": "User's phone number" },
   "password": { "type": "string", "required": true, "description": "User's password" },
-  "role": { "type": "string", "required": true, "description": "User's role (OWNER, ADMIN, STAFF)" },
+  "role": { "type": "string", "required": true, "description": "User's role (SUPER_ADMIN, ADMIN, STAFF)" },
   "is_verified": { "type": "boolean", "required": false, "description": "Indicates if the user's account is verified" },
   "profile_picture": { "type": "string", "required": false, "description": "URL to the user's profile picture" },
   "last_login_at": { "type": "date", "required": false, "description": "Timestamp of the user's last login" },
